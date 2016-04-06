@@ -104,7 +104,7 @@ if(!String.prototype.formatNum) {
 		// ID of the element of modal window. If set, events URLs will be opened in modal windows.
 		modal: null,
 		//	modal handling setting, one of "iframe", "ajax" or "template"
-		modal_type: "iframe",
+		modal_type: "template",
 		//	function to set modal title, will be passed the event as a parameter
 		modal_title: null,
 		views: {
@@ -1068,8 +1068,14 @@ if(!String.prototype.formatNum) {
 
 							case "template":
 								self._loadTemplate("modal");
+								$.getJSON(url, function (data) {
+								  modal_body.html(self.options.templates["modal"]({"event": event, "calendar": self, "data": data}));
+								});
+								// $.getJSON(url, function (data) {
+								// 	modal_body.html(self.options.templates["modal"]({"event": event, "calendar": self}, "data": data));
+								// });
 								//	also serve calendar instance to underscore template to be able to access current language strings
-								modal_body.html(self.options.templates["modal"]({"event": event, "calendar": self}))
+								// modal_body.html(self.options.templates["modal"]({"event": event, "calendar": self}))
 								break;
 						}
 
