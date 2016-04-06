@@ -1,13 +1,28 @@
 (function($) {
 
 	"use strict";
+	function today() {
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
 
+		if(dd<10) {
+		    dd='0'+dd
+		} 
+
+		if(mm<10) {
+		    mm='0'+mm
+		} 
+
+		return yyyy + "-" + mm + "-" + dd;
+	}
 	var options = {
-		events_source: 'events.json.php',
+		events_source: 'events.php',
 		view: 'month',
 		tmpl_path: 'tmpls/',
 		tmpl_cache: false,
-		day: '2013-03-12',
+		day: today(),
 		onAfterEventsLoad: function(events) {
 			if(!events) {
 				return;
@@ -60,7 +75,9 @@
 		calendar.setLanguage($(this).val());
 		calendar.view();
 	});
-
+	calendar.setOptions({modal: "#events-modal"});
+	calendar.setLanguage("zh-CN");
+	calendar.view();
 	$('#events-in-modal').change(function(){
 		var val = $(this).is(':checked') ? $(this).val() : null;
 		calendar.setOptions({modal: val});

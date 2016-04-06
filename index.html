@@ -26,13 +26,13 @@
 <body>
 <div class="container">
 	<div class="hero-unit">
-		<h1>Bootstrap Calendar Demo</h1>
+		<h1>测试机器预定</h1>
 
-		<p>Bootstrap based full view calendar. Template based.</p>
+		<p>预定机器列表</p>
 
-		<a class="btn btn-inverse" href="https://github.com/Serhioromano/bootstrap-calendar">Fork on GitHub</a>
+<!-- 		<a class="btn btn-inverse" href="https://github.com/Serhioromano/bootstrap-calendar">Fork on GitHub</a>
 		<a class="btn" href="index-bs3.html">Use bootstrap 3</a>
-		<a href="https://twitter.com/serhioromano" class="btn btn-twitter" data-show-count="false" data-size="large">Follow @serhioromano</a>
+		<a href="https://twitter.com/serhioromano" class="btn btn-twitter" data-show-count="false" data-size="large">Follow @serhioromano</a> -->
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 		</script>
 	</div>
@@ -54,7 +54,7 @@
 		</div>
 
 		<h3></h3>
-		<small>To see example with events navigate to march 2013</small>
+		<small>颜色表示被占用</small>
 	</div>
 
 	<div class="row">
@@ -62,7 +62,7 @@
 			<div id="calendar"></div>
 		</div>
 		<div class="span3">
-			<div class="row-fluid">
+			<div class="row-fluid" style="display: none;"><!-- style="display: none;" -->
 				<select id="first_day" class="span12">
 					<option value="" selected="selected">First day of week language-dependant</option>
 					<option value="2">First day of week is Sunday</option>
@@ -93,7 +93,7 @@
 					<option value="th-TH">Thai (Thailand)</option>
 				</select>
 				<label class="checkbox">
-					<input type="checkbox" value="#events-modal" id="events-in-modal"> Open events in modal window
+					<input type="checkbox" value="#events-modal" id="events-in-modal" checked> Open events in modal window
 				</label>
 				<label class="checkbox">
 					<input type="checkbox" id="format-12-hours"> 12 Hour format
@@ -112,7 +112,7 @@
 		</div>
 	</div>
 
-	<div class="clearfix"></div>
+<!-- 	<div class="clearfix"></div>
 	<br><br>
 	<a href="https://github.com/Serhioromano/bootstrap-calendar/issues" class="btn btn-block btn-info">
 		<center>
@@ -124,7 +124,7 @@
 	</a>
 	<br><br>
 
-	<div id="disqus_thread"></div>
+	<div id="disqus_thread"></div> -->
 	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 	<div class="modal hide fade" id="events-modal">
@@ -169,6 +169,7 @@
 	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript">
+		// calendar.setOptions({first_day: 3});
 		var disqus_shortname = 'bootstrapcalendar'; // required: replace example with your forum shortname
 		(function() {
 			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
