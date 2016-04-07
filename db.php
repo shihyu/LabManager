@@ -39,14 +39,15 @@ function get_event($id) {
 }
 
 function add_event($data) {
-    global $db;
-  $arr = json_decode($data);
-  print_r($arr);
+  global $db;
   //INSERT INTO `events` (`id`, `title`, `date_start`, `date_end`, `machind_id`, `user_id`) VALUES (NULL, 'snowfox', '20160419', '20160421', '4', '1');
-  $sql   = sprintf("INSERT INTO `events` (`id`, `title`, `date_start`, `date_end`, `machind_id`, `user_id`) VALUES (NULL, 'snowfox', '20160419', '20160421', '4', '1');");
+  $sql   = sprintf('INSERT INTO `events` (`id`, `title`, `date_start`, `date_end`, `machind_id`, `machine_name`, `user_name`, `user_mail`, `notify_mail`, `description`) VALUES (NULL, "%s", "%s", "%s","%s","%s","%s","%s","%s","%s")', 
+      $data['machine_name'], $data["date_start"], $data["date_end"], $data["machine_id"], $data['machine_name'], $data['user_name'],
+      $data['user_mail'], $data['notify_mail'], $data['description']);
+  echo $sql;
   $db->query($sql);
 
-  return json_encode(array('success' => 1, 'result' => $out));
+  return json_encode(array('success' => 1));
 }
 
 function get_all_machines() {
@@ -56,8 +57,10 @@ function get_all_machines() {
   foreach($db->query($sql) as $row) {
       $out[] = array(
           'mid' => $row['mid'],
-          'name' => $row['name'],
-          'owner_id' => $row['owner_id'],
+          'name' => $row['mname'],
+          'owner_id' => $row['owner_name'],
+          'owner_mail' => $row['owner_mail'],
+          'notify_mail' => $row['notify_mail'],
       );
   }
   return json_encode(array('success' => 1, 'result' => $out));

@@ -1,30 +1,112 @@
-
-<label for="">Start Date:</label>
-<input type="text" id="datepicker1" name="datepicker1" value="" />
-<label for="">End Date:</label>
-<input type="text" id="datepicker2" name="datepicker2" value="" />
-
-机器名：
-<input type="text">
-是否邮件通知：
-<input type="checkbox">
+<div class="row-fluid">
+  <div class="col-lg-4">
+    <div class="input-group">
+      <span class="input-group-addon span4">机器名</span>
+      <select class="form-control" id="machines-list">
+      </select>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="input-group">
+      <span class="input-group-addon span4">我的名字</span>
+      <input type="text" class="form-control"  id="username" placeholder="Search for..." value="alex">
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="input-group">
+      <span class="input-group-addon span4">我的邮箱</span>
+      <input type="text" class="form-control"  id="usermail" placeholder="Search for..." value="li.feng@oracle.com">
+    </div>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon span4" id="date_start">开始日期</span>
+      <input type="text" class="form-control" id="datepicker1" name="datepicker1" placeholder="Date begin" value="2016-04-08">
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon span4" id="date_end">结束日期</span>
+      <input type="text" class="form-control" id="datepicker2" name="datepicker2" placeholder="Date end"  value="2016-04-09">
+    </div>
+  </div>
+</div>
+  <div class="row-fluid">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-addon span4">是否发送通知</span>
+        <span class="input-group-addon">
+          <input type="checkbox" aria-label="发送通知"  id="is_notify" checked>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-addon span4" id="basic-addon3">发送通知给</span>
+        <input type="text" class="form-control" aria-label="Text input with checkbox" id="notifymail" value="lifeng1519@gmail.com">
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-addon span4" id="basic-addon3">其它描述</span>
+        <input type="text" class="form-control" aria-label="Text input with checkbox" id="description" value="extra">
+      </div>
+    </div>
+  </div>
 
 <div style = "margin: 10px 0">
-    <a href = "<%= event.url %>" class = "btn btn-primary"><i class = "icon-calendar"></i> Submit</a>
+    <a id = "submit" class = "btn btn-primary"><i class = "icon-calendar"></i> Submit</a>
 </div>
 
 <script>
 $(function() {
+  $.getJSON("bs.php?machines=a", function(data) {
+      var sel = $("#machines-list");
+      sel.empty();
+      machines = data.result;
+      for (var i=0; i<machines.length; i++) {
+        sel.append('<option value="' + machines[i].mid + '">' + machines[i].name + '</option>');
+      }
+    });
+  $("a#submit").click(function() {
+    $.post("bs.php", JSON.stringify({
+      machine_id: $("#machines-list").val(),
+      machine_name: $("#machines-list").text(),
+      date_start: $("#datepicker1").val(),
+      date_end: $("#datepicker2").val(),
+      user_name: $("#username").val(),
+      user_mail: $("#usermail").val(),
+      is_notify: $("#is_notify").val(),
+      notify_mail: $("#notifymail").val(),
+      description: $("#description").val()
+    }),
+    function(data) {
+      console.log("Add event success");
+    }
+  , "json")});
+  // $.post("<?=base_url()?>index.php/rubro/list_ajax/", { 
+  //   'idcategory' : idc },
+  //   function(data) {
+  //     var sel = $("#select");
+  //     sel.empty();
+  //     for (var i=0; i<data.length; i++) {
+  //       sel.append('<option value="' + data[i].id + '">' + data[i].desc + '</option>');
+  //     }
+  //   }, "json");
    $("#datepicker1,#datepicker2").datepicker({
     dateFormat: 'yy-mm-dd'
    });
-  $('.idTourDateDetails').datepicker({
-      dateFormat: 'yy-mm-dd',
-      minDate: '+5d',
-      changeMonth: true,
-      changeYear: true,
-      altField: "#idTourDateDetailsHidden",
-      altFormat: "yy-mm-dd"
-  });
+  // $('.idTourDateDetails').datepicker({
+  //     dateFormat: 'yy-mm-dd',
+  //     minDate: '+5d',
+  //     changeMonth: true,
+  //     changeYear: true,
+  //     altField: "#idTourDateDetailsHidden",
+  //     altFormat: "yy-mm-dd"
+  // });
 });
 </script>
