@@ -71,11 +71,15 @@
 		calendar.view();
 	});
 
+	$('#create-event').click(function(){
+		calendar.loadModal();
+	});
 	$('#language').change(function(){
 		calendar.setLanguage($(this).val());
 		calendar.view();
 	});
 	calendar.setOptions({modal: "#events-modal"});
+	calendar.setOptions({modal_type: "#events-modal"});
 	calendar.setLanguage("zh-CN");
 	calendar.view();
 	$('#events-in-modal').change(function(){

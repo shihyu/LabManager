@@ -34,7 +34,7 @@ CREATE TABLE `events` (
   `notify_mail` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'hotdog','20160406','20160408',1,'','1','','',''),(2,'hotcat','20160407','20160409',2,'','2','','',''),(3,'snowfox','20160419','20160421',4,'','1','','',''),(4,'','2016-04-08','2016',1,'hotdoghotdoghotdoghotcathotspotsnowfox','alex','li.feng@oracle.com','lifeng1519@gmail.com','extra');
+INSERT INTO `events` VALUES (1,'hotdog','20160406','20160408',1,'','1','','',''),(2,'hotcat','20160407','20160409',2,'','2','','',''),(3,'snowfox','20160419','20160421',4,'','1','','',''),(4,'','2016-04-08','2016',1,'hotdoghotdoghotdoghotcathotspotsnowfox','alex','li.feng@oracle.com','lifeng1519@gmail.com','extra'),(5,'','2016-04-08','2016-04-09',1,'hotdoghotdoghotdoghotcathotspotsnowfox','alex','li.feng@oracle.com','lifeng1519@gmail.com','extra'),(6,'hotdoghotdoghotdoghotcathotspotsnowfox','2016-04-08','2016-04-09',1,'hotdoghotdoghotdoghotcathotspotsnowfox','alex','li.feng@oracle.com','lifeng1519@gmail.com','extra');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-07 17:14:00
+-- Dump completed on 2016-04-07 17:58:57

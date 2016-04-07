@@ -1096,6 +1096,36 @@ if(!String.prototype.formatNum) {
 		});
 	};
 
+	Calendar.prototype.loadModal = function() {
+		var self = this;
+
+		if(!self.options.modal) {
+			return;
+		}
+
+		var modal = $(self.options.modal);
+
+		if(!modal.length) {
+			return;
+		}
+		
+		modal.off('show.bs.modal')
+			.off('shown.bs.modal')
+			.off('hidden.bs.modal')
+			.on('show.bs.modal', function() {
+				var modal_body = $(this).find('.modal-body');
+						self._loadTemplate("modal");
+						modal_body.html(self.options.templates["modal"]());
+			})
+			.on('shown.bs.modal', function() {
+				self.options.onAfterModalShown.call(self, self.options.events);
+			})
+			.on('hidden.bs.modal', function() {
+				self.options.onAfterModalHidden.call(self, self.options.events);
+			})
+			modal.modal('show');
+	};
+
 	Calendar.prototype._update_day = function() {
 		$('#cal-day-panel').height($('#cal-day-panel-hour').height());
 	};
